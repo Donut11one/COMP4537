@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns items to the top */
+    align-items: center;
+    margin: 0;
+    height: 100vh; /* This is the key: it contains everything to one viewport height */
+}
+
+.game-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#buttons-container {
+    position: relative;
+    width: 100vw;
+    flex-grow: 1; /* This is the key: it makes the container fill the remaining vertical space */
+}
+.game-button {
+    height: 5em;
+    width: 10em;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    transition: left 1s, top 1s; /*This causes the button to slide instead of teleport*/
+    user-select: none;
+    pointer-events: none;
+}
+
+.game-button.clickable {
+    pointer-events: auto;
+}
+
+#message-display {
+    position: fixed;
+    bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#num-buttons-label {
+    font-size: 1.1em;
+}
+
+#num-buttons {
+    padding: 5px;
+    font-size: 1em;
+    width: 50px;
+    text-align: center;
+}
+
+#go-button {
+    padding: 8px 15px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Initial row layout */
+.button-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
