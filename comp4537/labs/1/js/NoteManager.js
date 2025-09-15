@@ -30,12 +30,14 @@ class NoteManager {
             
             if (this.isWriterPage) {
                 // Add event listener for the dynamically created remove button
+                // This was gemini'd instead of every 2 seconds we rerender I save the notes
                 newNote.removeButton.addEventListener('click', () => {
                     this.notesContainer.removeChild(newNote.element);
                     this.saveNotes();
                 });
 
                 // Add an input event listener to the textarea to save on every change
+                // So does when we detect a user input
                 newNote.textArea.addEventListener('input', () => {
                     this.saveNotes();
                 });
