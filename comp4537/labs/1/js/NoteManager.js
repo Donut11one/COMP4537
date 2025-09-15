@@ -19,17 +19,16 @@ class NoteManager {
         });
         localStorage.setItem('notes', JSON.stringify(notesToSave));
     }
-
     renderNotes() {
         this.notesContainer.innerHTML = '';
         const notesData = this.getNotes();
-
+        
         notesData.forEach(noteData => {
             const newNote = new Note(noteData.content);
             newNote.createDOM(this.notesContainer, this.isWriterPage);
-
+            
             if (this.isWriterPage) {
-                // Add event listeners for the dynamically created elements
+                // Add event listener for the dynamically created remove button
                 newNote.removeButton.addEventListener('click', () => {
                     this.notesContainer.removeChild(newNote.element);
                     this.saveNotes();
@@ -53,23 +52,13 @@ class NoteManager {
 
     init() {
         if (this.isWriterPage) {
-            this.renderNotes();
-            
-            // Add note functionality
-            const addButton = document.getElementById('add-note');
-            addButton.addEventListener('click', () => {
-                const newNote = new Note('');
-                newNote.createDOM(this.notesContainer, this.isWriterPage);
-                
-                // Attach remove event listener to the new button
-                newNote.removeButton.addEventListener('click', () => {
-                    this.notesContainer.removeChild(newNote.element);
-                    this.saveNotes();
-                });
-
-                this.saveNotes();
+            const addNoteButton = document.getElementById('add-note');
+            addNoteButton.addEventListener('click', () => {
+                this.notes.push({ content: '' });
+                this.renderNotes();
             });
-            
+            this.renderNotes();
+
             // Listener for storage events from other tabs
             window.addEventListener('storage', (event) => {
                 if (event.key === 'notes') {
@@ -80,12 +69,7 @@ class NoteManager {
         } else { // Reader page logic
             this.renderNotes();
             this.updateTimestamp('last-updated', messages.updatedAt);
-            // Polling to retrieve notes every 2 seconds
-            setInterval(() => {
-                this.renderNotes();
-                this.updateTimestamp('last-updated', messages.updatedAt);
-            }, 2000);
-
+            
             // Instant updates from other tabs
             window.addEventListener('storage', (event) => {
                 if (event.key === 'notes') {
