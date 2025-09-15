@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.note-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+textarea {
+    flex-grow: 1;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.remove-button, .add-button {
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.remove-button {
+    background-color: #f44336; /* Red */
+}
+
+.add-button {
+    background-color: #4CAF50; /* Green */
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#last-saved, #last-updated {
+    font-size: 0.9em;
+    color: #666;
+}
