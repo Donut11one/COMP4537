@@ -57,6 +57,7 @@ class NoteManager {
             
             // Add note functionality
             const addButton = document.getElementById('add-note');
+            console.log(addButton)
             addButton.addEventListener('click', () => {
                 const newNote = new Note('');
                 newNote.createDOM(this.notesContainer, this.isWriterPage);
