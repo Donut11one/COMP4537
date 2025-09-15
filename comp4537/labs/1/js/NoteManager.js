@@ -23,15 +23,20 @@ class NoteManager {
     renderNotes() {
         this.notesContainer.innerHTML = '';
         const notesData = this.getNotes();
-        
+
         notesData.forEach(noteData => {
             const newNote = new Note(noteData.content);
             newNote.createDOM(this.notesContainer, this.isWriterPage);
-            
+
             if (this.isWriterPage) {
-                // Add event listener for the dynamically created remove button
+                // Add event listeners for the dynamically created elements
                 newNote.removeButton.addEventListener('click', () => {
                     this.notesContainer.removeChild(newNote.element);
+                    this.saveNotes();
+                });
+
+                // Add an input event listener to the textarea
+                newNote.textArea.addEventListener('input', () => {
                     this.saveNotes();
                 });
             }
@@ -64,9 +69,6 @@ class NoteManager {
 
                 this.saveNotes();
             });
-
-            // Polling to save notes every 2 seconds
-            setInterval(() => this.saveNotes(), 2000);
             
             // Listener for storage events from other tabs
             window.addEventListener('storage', (event) => {
@@ -78,7 +80,6 @@ class NoteManager {
         } else { // Reader page logic
             this.renderNotes();
             this.updateTimestamp('last-updated', messages.updatedAt);
-            
             // Polling to retrieve notes every 2 seconds
             setInterval(() => {
                 this.renderNotes();
