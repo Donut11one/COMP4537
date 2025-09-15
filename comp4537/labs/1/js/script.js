@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Determine the current page
     const isWriterPage = window.location.pathname.includes('writer.html');
-    console.log(isWritePage)
+    console.log(isWriterPage)
 
     const notesContainer = document.getElementById('notes-container');
 
