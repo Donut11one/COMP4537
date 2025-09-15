@@ -19,6 +19,7 @@ class NoteManager {
         });
         localStorage.setItem('notes', JSON.stringify(notesToSave));
     }
+
     renderNotes() {
         this.notesContainer.innerHTML = '';
         const notesData = this.getNotes();
@@ -34,7 +35,7 @@ class NoteManager {
                     this.saveNotes();
                 });
 
-                // Add an input event listener to the textarea
+                // Add an input event listener to the textarea to save on every change
                 newNote.textArea.addEventListener('input', () => {
                     this.saveNotes();
                 });
@@ -52,12 +53,27 @@ class NoteManager {
 
     init() {
         if (this.isWriterPage) {
-            const addNoteButton = document.getElementById('add-note');
-            addNoteButton.addEventListener('click', () => {
-                this.notes.push({ content: '' });
-                this.renderNotes();
-            });
             this.renderNotes();
+            
+            // Add note functionality
+            const addButton = document.getElementById('add-note');
+            addButton.addEventListener('click', () => {
+                const newNote = new Note('');
+                newNote.createDOM(this.notesContainer, this.isWriterPage);
+                
+                // Attach remove event listener to the new button
+                newNote.removeButton.addEventListener('click', () => {
+                    this.notesContainer.removeChild(newNote.element);
+                    this.saveNotes();
+                });
+
+                // Add input listener to the new textarea
+                newNote.textArea.addEventListener('input', () => {
+                    this.saveNotes();
+                });
+                
+                this.saveNotes();
+            });
 
             // Listener for storage events from other tabs
             window.addEventListener('storage', (event) => {
