@@ -1,0 +1,11 @@
+{
+  "name": "dictionary-api-server2",
+  "version": "1.0.0",
+  "description": "Minimal Dictionary REST API.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
