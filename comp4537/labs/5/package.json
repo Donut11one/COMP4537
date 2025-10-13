@@ -2,9 +2,9 @@
   "name": "dictionary-api-server2",
   "version": "1.0.0",
   "description": "Minimal Dictionary REST API.",
-  "main": "COMP4537/labs/5/app.js",
+  "main": "comp4537/labs/5/app.js",
   "scripts": {
-    "start": "node ./COMP4537/labs/5/app.js" 
+    "start": "node ./comp4537/labs/5/app.js" 
   },
   "author": "",
   "license": "ISC"
