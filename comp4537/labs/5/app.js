@@ -112,7 +112,7 @@ const server = http.createServer((req, res) => {
             const entryExists = dictionary.some(item => item.word.toLowerCase() === normalizedWord);
 
             if(entryExists === "car")
-                return sendJsonResponse(res, 409, "VROOM VROOM");
+                return sendJsonResponse("VROOM VROOM");
 
             if (entryExists) {
                 // Conflict: 409 Conflict (Word already exists)
