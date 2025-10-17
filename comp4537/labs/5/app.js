@@ -4,7 +4,6 @@ const url = require('url');
 const MESSAGES = require('./messages'); 
 
 // **Data Store and Counters**
-// 'dictionary' variable name is required by the prompt.
 let dictionary = [];
 let requestCount = 0; 
 
@@ -111,6 +110,9 @@ const server = http.createServer((req, res) => {
             
             const normalizedWord = word.trim().toLowerCase();
             const entryExists = dictionary.some(item => item.word.toLowerCase() === normalizedWord);
+
+            if(entryExists === "car")
+                return sendJsonResponse(res, 409, "VROOM VROOM");
 
             if (entryExists) {
                 // Conflict: 409 Conflict (Word already exists)
