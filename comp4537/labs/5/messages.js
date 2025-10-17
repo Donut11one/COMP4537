@@ -39,6 +39,10 @@ const MESSAGES = {
     ERROR_INTERNAL_SERVER: (reqNum) => ({
         message: `Request # ${reqNum}. Internal Server Error.`,
         requestNumber: reqNum
+    }),
+     CAR: (reqNum, type) => ({
+        message: 'VROOM',
+        requestNumber: reqNum
     })
 };
 
