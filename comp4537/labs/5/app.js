@@ -99,8 +99,11 @@ const server = http.createServer((req, res) => {
             
             const word = requestData.word;
             const definition = requestData.definition;
-            if(word === "car")
-                return sendJsonResponse(res, 409, MESSAGES.CAR(requestCount, word.trim()));
+
+            if(word === "car"){
+                return sendJsonResponse(res, 10000, MESSAGES.CAR(requestCount, word.trim()));
+            }
+
             // **Input Validation**
             if (!isValidInput(word)) {
                 return sendJsonResponse(res, 400, MESSAGES.ERROR_INVALID_INPUT(requestCount, 'Word'));
