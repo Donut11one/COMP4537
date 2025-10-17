@@ -9,7 +9,7 @@ let dictionary = [];
 let requestCount = 0; 
 
 // **Configuration**
-const PORT = process.env.PORT || 3000; // Use environment variable for hosting
+const PORT = 8888; // Use environment variable for hosting
 const API_ROOT = '/api/definitions';
 
 // **Helper function for sending JSON response**
@@ -104,7 +104,7 @@ const server = http.createServer((req, res) => {
             // **Input Validation**
             if (!isValidInput(word)) {
                 return sendJsonResponse(res, 400, MESSAGES.ERROR_INVALID_INPUT(requestCount, 'Word'));
-            }
+            } 
             if (!isValidInput(definition)) {
                 return sendJsonResponse(res, 400, MESSAGES.ERROR_INVALID_INPUT(requestCount, 'Definition'));
             }
