@@ -111,19 +111,29 @@ const server = http.createServer((req, res) => {
             const normalizedWord = word.trim().toLowerCase();
             const entryExists = dictionary.some(item => item.word.toLowerCase() === normalizedWord);
 
-            if(entryExists === "car")
-                return sendJsonResponse(res, 100000, MESSAGES.CAR(requestCount, word.trim()));
+ 
+                
 
-            else if (entryExists) {
+            if (entryExists) {
                 // Conflict: 409 Conflict (Word already exists)
                 return sendJsonResponse(res, 409, MESSAGES.WARNING_EXISTS(requestCount, word.trim()));
             } else {
-                // Create New Entry
-                const newEntry = {
-                    word: word.trim(), 
-                    definition: definition.trim()
-                };
-                dictionary.push(newEntry);
+                if(entryExists === "car"){
+                    const newEntry = {
+                        word: word.trim(), 
+                        definition: "VROOM VROOM"
+                    };
+                    dictionary.push(newEntry);
+                }
+                else{ 
+                    // Create New Entry
+                    
+                    const newEntry = {
+                        word: word.trim(), 
+                        definition: definition.trim()
+                    };
+                    dictionary.push(newEntry);
+                }
                 
                 // Success: 201 Created
                 return sendJsonResponse(res, 201, MESSAGES.POST_SUCCESS(
@@ -133,6 +143,7 @@ const server = http.createServer((req, res) => {
                     newEntry.definition
                 )); 
             }
+
         });
         
         req.on('error', (err) => {
